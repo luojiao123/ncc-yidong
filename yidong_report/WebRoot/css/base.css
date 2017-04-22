@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0px;
+	padding:0px;
+	font-size:12px
+}
+input{
+	height:20px;
+}
+input[type="button"]{
+	width:80px;
+	height:25px;
+} 
+select{
+	height:20px;
+}
+.listBar{
+	background:#CCC;
+	padding:5px;
+	padding-left: 50px;
+}
+.bar{
+	 background-color: #F9FBFD;
+    clear: both;
+    color: #444444;
+    height: 30px;
+    line-height: 28px;
+    padding-left: 10px;	
+}
+.inputTable{}
+
+.inputTable th{
+	background-color: #F9FFFD;
+    border-bottom: 1px solid #DDE9F5;
+    color: #333333;
+    font-weight: normal;
+    line-height: 25px;
+    padding: 5px 10px 5px 0;
+    text-align: right;
+    width: 120px
+}
+.buttonArea{
+	padding-left:100px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+#messager{
+	width:100%; 
+	text-align:center; 
+	background:#3FF;
+	padding:20px;
+	position:absolute;
+	top:250px;
+}

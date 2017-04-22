@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd"> -->
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    
+"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+    <!-- Add packages here -->   
+    <!-- 配置此常量,当前配置文件改变,不需要重启 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 启用动态调用配置 -->
+    <!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" />   -->
+    
+     <package name="system" extends="struts-default" namespace="/">
+    	<action name="system_*" class="com.action.SystemAction" method="{1}">
+    		<result name="success">/index.jsp</result> 
+		    <result name="input">/page/error.jsp</result> 
+		    <result name="login">/login.jsp</result>
+		     <result name="welcome">/welcom.jsp</result>
+    	</action>
+    	
+    </package>
+    
+	<package name="json" extends="json-default" namespace="/">	
+		 <action name="customer_*" class="customeraction" method="{1}">
+		 	<result type="json" name="customer_json">
+		    <param name="root">map</param>
+		  </result>
+		   <result name="list">/page/customer_list.jsp</result>
+		   <result name="input">/page/addCustomer.jsp</result>
+		</action>
+		<action name="nodeaction" class="nodeaction">
+		    <result type="json" name="pagequery">
+		       <param name="root">map</param>
+		    </result> 
+		    <result type="json" name="queryall">
+		       <param name="root">list</param>
+		    </result> 
+		    <result type="json" name="searchname">
+		       <param name="root">list</param>
+		    </result>  
+		    <result type="json" name="excel">
+		       <param name="success"></param>
+		    </result>  
+		</action>
+		<action name="nodeplaylistaction" class="nodeplaylistaction">
+		    <result type="json" name="recordquery">
+		       <param name="root">map</param>
+		    </result> 
+		    <result type="json" name="pagequery">
+		       <param name="root">map</param>
+		    </result> 
+		    <result type="json" name="pagelikequery">
+		       <param name="root">map</param>
+		    </result> 
+		    <result type="json" name="queryall">
+		       <param name="root">list</param>
+		    </result>  
+		    <result type="json" name="excel">
+		       <param name="success"></param>
+		    </result>  
+		</action>
+		<action name="test" class="testaction">   
+		    <result type="json" name="test">
+		       <param name="root">list</param>
+		    </result>  
+		    <result type="json" name="tiqu">
+		       <param name="root"></param>
+		    </result> 
+		</action> 
+		<action name="tree" class="treeaction" method="getNodeTreeList">   
+		    <result type="json" name="test"> 
+		    </result> 
+		</action>
+		 
+		<action name="pie" class="pie">
+			<result type="json" name="query">
+				<param name="root">map</param> 
+			</result>
+			
+			<result type="json" name="queryall">
+				<param name="root">list</param> 
+			</result>
+			
+			<result type="json" name="pagequery">
+				<param name="root">map</param> 
+			</result>
+			
+		</action>
+		
+		<action name="nodelist" class="nodelist">
+			<result type="json" name="pagequerylist">
+				<param name="root">map</param> 
+			</result>
+			<result type="json" name="queryall">
+				<param name="root">list</param> 
+			</result>
+			<result type="json" name="pagequery">
+				<param name="root">map</param> 
+			</result>
+		</action>
+		
+		<action name="btmonitor" class="btmonitor">
+			<result type="json" name="query">
+				<param name="root">list</param>
+			</result>
+			<result type="json" name="pagequery">
+		       <param name="root">map</param>
+		    </result> 
+		</action>
+	</package>
+	
+	 
+	<package name="struts-shop" extends="struts-default" namespace="/">
+		 <interceptors>
+		      <interceptor-stack name="myStack"> 
+			       <interceptor-ref name="token" />
+			       <interceptor-ref name="defaultStack"/>
+		      </interceptor-stack>
+	    </interceptors>
+	    
+	     
+	    <!--定义全局结果集-->  
+       <!--  <global-results>  
+            <result name="sessionnull">/login.jsp</result>      
+        </global-results>  -->
+       
+    
+		<action name="operator" class="operatoraction">
+		    <!-- 设置Action调用的拦截器堆栈 -->
+		    <interceptor-ref name="myStack" />
+	        <result name="success">/index.jsp</result> 
+		    <result name="input">/login.jsp</result>
+		    <result name="invalid.token">/login.jsp</result>
+		</action>
+		
+		<action name="nodeAction" class="node">
+		    <param name="savePath">/upload</param>
+		    <result name="success">/page/success.jsp</result>
+		    <result name="error">/page/addNode.jsp</result>
+		    <result name="select">/page/addNode.jsp</result>
+		    <result name="input">/page/addNode.jsp</result>
+		    <result name="selectstorename">/page/backToRecord.jsp</result> 
+		</action>
+	 </package>
+	
+</struts>
